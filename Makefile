@@ -1,10 +1,10 @@
 CC = g++
-CFLAGS = -Werror -Wall -g
+CFLAGS = -std=c++11 -Werror -Wall -g
 
 all: main.exe
 
 main.exe: main.o linked_list.o list.o stack.o queue.o
-	$(CC) $(CFLAGS) -o main.exe main.o
+	$(CC) $(CFLAGS) -o main.exe main.o linked_list.o list.o stack.o queue.o
 
 main.o: main.cpp
 	$(CC) $(CFLAGS) -c main.cpp

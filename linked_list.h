@@ -1,6 +1,6 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
-
+#include <iostream>
 #include "node.h"
 
 class LinkedList {

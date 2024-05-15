@@ -5,10 +5,7 @@ Queue::Queue():LinkedList()
     tail = nullptr;
 }
 
-Queue::~Queue()
-{
-    LinkedList::~LinkedList();
-}
+Queue::~Queue(){}
 
 // Queue의 정의에 맞게 데이터를 삽입한다.
 void Queue::push(int data)
@@ -21,13 +18,8 @@ void Queue::push(int data)
     }
     else
     {
-        Node* temp = head_;
-        for (int i = 0; i < size_; i++)
-        {
-            temp = temp->next_;
-        }
-        temp->next_ = newNode;
-        tail = newNode;
+       tail->next_ = newNode;
+       tail = newNode;
     }
     size_++;
 }
@@ -35,10 +27,10 @@ void Queue::push(int data)
 // Queue의 정의에 맞게 데이터를 꺼내고 적절한 메모리를 해제한다.
 int Queue::pop()
 {
-   int result = this->get(0);
-   Node* temp = head_;
-   head_ = head_->next_;
-   delete temp;
+   int result = head_->value_;
+   Node* temp = head_->next_;
+   delete head_;
+   head_ = temp;
    size_--;
    return result;
 }
@@ -49,7 +41,7 @@ int Queue::peek()
     return head_->value_;
 }
 
-void Queue::operator+=(const int data)
+void Queue::operator+=(int data)
 {
     push(data);
 }

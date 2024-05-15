@@ -6,10 +6,7 @@ Stack::Stack():LinkedList()
     tail = nullptr;
 }
 
-Stack::~Stack()
-{
-    LinkedList::~LinkedList();
-}
+Stack::~Stack(){}
 
 // Stack의 정의에 맞게 데이터를 삽입한다.
 void Stack::push(int data)
@@ -22,13 +19,8 @@ void Stack::push(int data)
     }
     else
     {
-        Node* temp = head_;
-        for (int i = 0; i < size_; i++)
-        {
-            temp = temp->next_;
-        }
-        temp->next_ = newNode;
-        tail = newNode;
+       newNode->next_ = head_;
+       head_ = newNode;
     }
     size_++;
 }
@@ -36,15 +28,10 @@ void Stack::push(int data)
 // Stack의 정의에 맞게 데이터를 꺼내고 적절한 메모리를 해제한다.
 int Stack::pop()
 {
-    int result = tail->value_;
-    Node* temp = head_;
-    for (int i = 0; i < size_-1; i++)
-    {
-        temp = temp->next_;
-    }
-    tail = temp;
-    temp = temp->next_;
-    delete temp;
+    int result = head_->value_;
+    Node* temp = head_->next_;
+    delete head_;
+    head_ = temp;
     size_--;
     return result;
 } 
@@ -52,7 +39,7 @@ int Stack::pop()
 // Stack의 정의에 맞게 다음에 pop 될 값을 미리 본다.
 int Stack::peek()
 {
-    return tail->value_;
+    return head_->value_;
 }
 
 void Stack::operator+=(int data)
